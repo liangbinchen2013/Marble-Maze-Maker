@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>弹珠迷宫 DIY</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="%23F0872A"/><circle cx="16" cy="16" r="5" fill="%23231509"/></svg>'>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="dot"></span><h1>弹珠迷宫 <em>DIY</em></h1></div>
+  <p class="tag">画墙 · 挖孔 · 导出 STL / 环绕 GIF</p>
+  <div class="top-actions">
+    <button id="btn-classic" class="ghost">经典 8×8</button>
+    <button id="btn-random" class="ghost">随机迷宫</button>
+    <button id="btn-clear" class="ghost">清空内墙</button>
+  </div>
+</header>
+
+<main>
+  <!-- ------------------------------------------------ 左：工具 + 参数 -->
+  <aside class="panel">
+    <h2>工具</h2>
+    <div class="tools">
+      <button class="tool active" data-tool="wall"><b>▤</b><span>画墙</span></button>
+      <button class="tool" data-tool="hole"><b>◉</b><span>格孔</span></button>
+      <button class="tool" data-tool="node"><b>✛</b><span>交点</span></button>
+      <button class="tool" data-tool="move"><b>✥</b><span>移动</span></button>
+      <button class="tool" data-tool="start"><b>S</b><span>起点</span></button>
+      <button class="tool" data-tool="end"><b>T</b><span>终点</span></button>
+    </div>
+    <p class="hint" id="tool-hint">在格线上按住拖动 = 连续画墙；在已有墙上拖 = 擦除</p>
+
+    <h2>尺寸 <span class="unit">mm</span></h2>
+    <div class="fields" id="fields"></div>
+
+    <h2>出入口</h2>
+    <div class="two">
+      <label>入口方向
+        <select id="start-side">
+          <option value="top">上</option><option value="right">右</option>
+          <option value="bottom">下</option><option value="left">左</option>
+        </select>
+      </label>
+      <label>出口方向
+        <select id="end-side">
+          <option value="top">上</option><option value="right">右</option>
+          <option value="bottom">下</option><option value="left">左</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="io">
+      <button id="btn-export" class="ghost small">导出配置</button>
+      <button id="btn-import" class="ghost small">导入配置</button>
+      <input type="file" id="file-import" accept=".json" hidden>
+    </div>
+  </aside>
+
+  <!-- ------------------------------------------------ 中：画布 -->
+  <section class="stage">
+    <canvas id="maze"></canvas>
+    <div class="legend">
+      <span><i class="sw wall"></i>墙</span>
+      <span><i class="sw hole"></i>落球孔</span>
+      <span><i class="sw path"></i>解法</span>
+      <span class="dim" id="dim-label"></span>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ 右：校验 + 导出 -->
+  <aside class="panel right">
+    <h2>校验</h2>
+    <div id="status" class="status"><div class="verdict wait">检查中…</div></div>
+    <div id="warnings" class="warnings"></div>
+
+    <h2>导出</h2>
+    <button id="btn-build" class="primary">生成 3D 模型</button>
+    <button id="btn-gif" class="ghost">生成环绕 GIF</button>
+    <div id="result" class="result"></div>
+  </aside>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
