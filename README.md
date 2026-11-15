@@ -1,5 +1,7 @@
 # 弹珠迷宫 DIY
 
+[MakerWorld模型](https://makerworld.com.cn/zh/models/3262461-dan-zhu-mi-gong#profileId-3854015)
+
 浏览器里画墙、挖孔、**自由拖动**，实时校验能不能通关，一键导出 **STL** 和 **360° 环绕 GIF**。
 
 ## 启动
